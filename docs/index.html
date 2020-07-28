@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <div id="app">
         <h1>ToDoリスト</h1>
+        <p><button v-on:click="openModal" id="pinkBtn">Add New</button></p>
         <!--繰り返したいリスト-->
         <ul>
             <li v-for="item in todos"
                 v-bind:key="item.id">
-                <div>
+                <div id="lists">
                     <p>{{ item.id }}</p>
                     <h3>{{ item.title }}</h3>
                     <p>{{ item.content }}</p>
@@ -22,18 +23,25 @@
                 </div>
             </li>
         </ol>
+        
+        
+        <div id="overlay" v-show="showContent">
+            <div id="content-form">
+                <h2>Add New Task</h2>
+                <button v-on:click="closeModal" id="cancelBtn">キャンセル</button>
+                <form class="add-form" v-on:submit.prevent="doAdd">
+                    <p>タイトル</p><input type="text" ref="title">
+                    <p>内容</p><input type="text" ref="content">
+                    <p><button type="submit" v-on:click="closeModal" id="pinkBtn">追加</button></p>
+                </form>
+            </div>
+        </div>
 
-        <h2>Add New Task</h2>
-        <form class="add-form" v-on:submit.prevent="doAdd">
-            タイトル<input type="text" ref="title">
-            内容<input type="text" ref="content">
-            <button type="submit">追加</button>
-        </form>
     </div>
     
 
     <!--Vue.jsとJavaScriptファイルのインポート-->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="./main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="main.js"></script>
 </body>
 </html>

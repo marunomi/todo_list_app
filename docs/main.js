@@ -18,6 +18,7 @@ new Vue({
     el: '#app',
     data: {
         todos: [],
+        showContent: false,
     },
     watch: {
         todos: {
@@ -45,10 +46,17 @@ new Vue({
             })
             title.value = ''
             content.value = ''
+            this.closeModal = false
         },
         doRemove: function (item) {
             var index = this.todos.indexOf(item)
             this.todos.splice(index, 1)
+        },
+        openModal: function(){
+            this.showContent = true
+        },
+        closeModal: function(){
+            this.showContent = false
         }
     }
 })
