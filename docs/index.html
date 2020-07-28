@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <div id="app">
+        <h1>ToDoリスト</h1>
+        <!--繰り返したいリスト-->
+        <ul>
+            <li v-for="item in todos"
+                v-bind:key="item.id">
+                <div>
+                    <p>{{ item.id }}</p>
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.content }}</p>
+                    <button v-on:click.prevent="doRemove(item)">
+                        削除
+                    </button>
+                </div>
+            </li>
+        </ol>
+
+        <h2>Add New Task</h2>
+        <form class="add-form" v-on:submit.prevent="doAdd">
+            タイトル<input type="text" ref="title">
+            内容<input type="text" ref="content">
+            <button type="submit">追加</button>
+        </form>
+    </div>
+    
+
+    <!--Vue.jsとJavaScriptファイルのインポート-->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
