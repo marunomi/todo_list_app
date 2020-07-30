@@ -2,23 +2,22 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>TO DO LIST</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <div id="app">
-        <h1>ToDoリスト</h1>
-        <p><button v-on:click="openModal" id="pinkBtn">Add New</button></p>
+        <h1>TODOs</h1>
+        <button v-on:click="openModal" id="pinkBtn">＋ Add a new task</button>
         <!--繰り返したいリスト-->
         <ul>
             <li v-for="item in todos"
                 v-bind:key="item.id">
                 <div id="lists">
-                    <p>{{ item.id }}</p>
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.content }}</p>
-                    <button v-on:click.prevent="doRemove(item)">
-                        削除
+                    <h3 id="list-contents">{{ item.title }}</h3>
+                    <p id="list-contents">{{ item.content }}</p>
+                    <button id="list-contents"v-on:click.prevent="doRemove(item)">
+                        Delete
                     </button>
                 </div>
             </li>
@@ -27,12 +26,16 @@
         
         <div id="overlay" v-show="showContent">
             <div id="content-form">
-                <h2>Add New Task</h2>
-                <button v-on:click="closeModal" id="cancelBtn">キャンセル</button>
+                <div class="head-container">
+                    <h2>Add New Task</h2>
+                    <span class="dli-close" v-on:click="closeModal"></span>
+                </div>
                 <form class="add-form" v-on:submit.prevent="doAdd">
-                    <p>タイトル</p><input type="text" ref="title">
-                    <p>内容</p><input type="text" ref="content">
-                    <p><button type="submit" v-on:click="closeModal" id="pinkBtn">追加</button></p>
+                    Title<br>
+                    <input type="text" ref="title" placeholder="Enter Title"><br>
+                    Details<br>
+                    <textarea name="todo" cols="30" rows="10" ref="content" placeholder="Add Details"></textarea><br>
+                    <button type="submit" v-on:click="closeModal" id="pinkBtn">Done</button>
                 </form>
             </div>
         </div>
