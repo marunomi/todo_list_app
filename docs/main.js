@@ -1,5 +1,4 @@
-// ★STEP2
-// https://jp.vuejs.org/v2/examples/todomvc.html
+
 var STORAGE_KEY = 'todos-vuejs-demo'
 var todoStorage = {
   fetch: function () {
